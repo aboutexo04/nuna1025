@@ -10,7 +10,15 @@ import WeatherButton from './component/WeatherButton'
 //5.데이터를 들고오는 동안 로딩스피너가 돈다.
 function App() {
   const [weather, setWeather] = useState(null)
-  const [showLocationMessage, setShowLocationMessage] = useState(true)
+  const [showLocationMessage, setShowLocationMessage] = useState(false)
+  const cities=["fukuoka", "tokyo", "beijing","incheon"]
+  const [city, setCity] = useState("")
+
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
+  
+  if (!API_KEY) {
+    console.error('API 키가 설정되지 않았습니다. .env 파일에 VITE_WEATHER_API_KEY를 설정해주세요.')
+  }
   
   const getCurrentLocation = () => {
     setShowLocationMessage(false)
@@ -26,19 +34,7 @@ function App() {
       }
     )
   }
-  const getCityLocation = async (city) => {
-    navigator.geolocation.getCurrentPosition((position)=>{
-      let lat = position.coords.latitude
-      let lon = position.coords.longitude
-      getWeatherByCurrentLocation(lat, lon)
-    })
-  }
-  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
-  
-  if (!API_KEY) {
-    console.error('API 키가 설정되지 않았습니다. .env 파일에 VITE_WEATHER_API_KEY를 설정해주세요.')
-  }
-  
+
   const getWeatherByCurrentLocation = async (lat, lon) => {
      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     let response = await fetch(url)
@@ -51,15 +47,30 @@ function App() {
     let data = await response.json()
     setWeather(data)
   }
-  useEffect(() => {
-    getCurrentLocation()
-  }, [])
 
+  const handleCityChange = (city) => {
+    if (city === "current") {
+      setCity("")
+      getCurrentLocation()
+    } else {
+      setCity(city)
+    }
+  }
+
+  useEffect(() => {
+    if (city === "") {
+      getCurrentLocation()
+    } else {
+      getWeatherByCity(city)
+    }
+  }, [city])
+  
   return (
     <>
       <div className="container">
-        <WeatherBox weather={weather} showLocationMessage={showLocationMessage} />
-        <WeatherButton getCurrentLocation={getCurrentLocation} getWeatherByCity={getWeatherByCity} />
+        <h1 className="app-title">Current Weather in Various Cities</h1>
+        <WeatherBox weather={weather} />
+        <WeatherButton cities={cities} setCity={handleCityChange} />
       </div>
     </>
   )
