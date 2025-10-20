@@ -4,8 +4,10 @@ const WeatherBox = ({weather, showLocationMessage}) => {
     if (showLocationMessage) {
         return (
             <div className="weather-box">
-                <div style={{color: '#3498db', fontSize: '18px', fontWeight: '600'}}>
-                    📍 날씨를 확인하시려면 위치권한이 허용되었는지 확인해주세요!
+                <div className="location-message">
+                    📍 위치 권한이 필요합니다!
+                    <br />
+                    <small>브라우저에서 위치 권한을 허용해주세요.</small>
                 </div>
             </div>
         )

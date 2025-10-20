@@ -89,7 +89,7 @@ function App() {
       <div className="container">
       
         <h1 className="app-title">Current Weather in Various Cities</h1>
-        <WeatherBox weather={weather} />
+        <WeatherBox weather={weather} showLocationMessage={showLocationMessage} />
          <WeatherButton cities={cities} setCity={handleCityChange} selectedCity={selectedCity} />
       </div>
     )}
