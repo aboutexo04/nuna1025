@@ -1,0 +1,87 @@
+body{
+  background:url(https://png.pngtree.com/thumb_back/fh260/background/20201012/pngtree-white-cloud-on-blue-sky-weather-background-image_410050.jpg);
+  height:100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+  flex-direction: column;
+}
+.weather-box{
+  border: none;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 450px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-box > div:first-child {
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(255,255,255,0.5);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.weather-box h2 {
+  color: #ff6b6b;
+  font-size: 32px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 15px 0;
+  letter-spacing: 2px;
+}
+
+.weather-box h3 {
+  color: #4a69bd;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(255,255,255,0.4);
+  margin-top: 10px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+.weather-button{
+  margin:10px;
+  display: flex;
+  gap: 15px;
+}
+
+.weather-button .btn {
+  background: linear-gradient(135deg, #ffc107, #ff8c00);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.weather-button .btn:hover {
+  background: linear-gradient(135deg, #ff8c00, #ff6b00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+}
+
+.weather-button .btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);
+}
