@@ -10,12 +10,21 @@ import WeatherButton from './component/WeatherButton'
 //5.데이터를 들고오는 동안 로딩스피너가 돈다.
 function App() {
   const [weather, setWeather] = useState(null)
+  const [showLocationMessage, setShowLocationMessage] = useState(true)
+  
   const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position)=>{
-      let lat = position.coords.latitude
-      let lon = position.coords.longitude
-      getWeatherByCurrentLocation(lat, lon)
-    })
+    setShowLocationMessage(false)
+    navigator.geolocation.getCurrentPosition(
+      (position)=>{
+        let lat = position.coords.latitude
+        let lon = position.coords.longitude
+        getWeatherByCurrentLocation(lat, lon)
+      },
+      (error) => {
+        console.log("위치 권한이 거부되었습니다.")
+        setShowLocationMessage(true)
+      }
+    )
   }
   const getCityLocation = async (city) => {
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -49,7 +58,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <WeatherBox weather={weather} />
+        <WeatherBox weather={weather} showLocationMessage={showLocationMessage} />
         <WeatherButton getCurrentLocation={getCurrentLocation} getWeatherByCity={getWeatherByCity} />
       </div>
     </>
