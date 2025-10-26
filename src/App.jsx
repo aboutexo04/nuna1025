@@ -11,7 +11,7 @@ import { ClipLoader } from "react-spinners";
 //5.데이터를 들고오는 동안 로딩스피너가 돈다.
 function App() {
   const [weather, setWeather] = useState(null)
-  const [showLocationMessage, setShowLocationMessage] = useState(false)
+  const [showLocationMessage, setShowLocationMessage] = useState(true)
   const cities=["fukuoka", "tokyo", "beijing","incheon"]
   const [city, setCity] = useState("")
   const [selectedCity, setSelectedCity] = useState("")
@@ -23,11 +23,12 @@ function App() {
   }
   
   const getCurrentLocation = () => {
-    setShowLocationMessage(false)
+    setShowLocationMessage(true)
     navigator.geolocation.getCurrentPosition(
       (position)=>{
         let lat = position.coords.latitude
         let lon = position.coords.longitude
+        setShowLocationMessage(false)
         getWeatherByCurrentLocation(lat, lon)
       },
       (error) => {
