@@ -1,5 +1,7 @@
 # Weather App
 
+<img width="852" height="571" alt="image" src="https://github.com/user-attachments/assets/4980bd31-a302-4477-b2a6-a986217cce81" />
+
 React로 만든 날씨 앱입니다.
 
 ## 기능
